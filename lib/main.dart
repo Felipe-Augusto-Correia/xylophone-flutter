@@ -1,117 +1,45 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   final player = AudioCache();
+
+  void playSound(int n) => player.play('note$n.wav');
+
+  Widget createButton(Color color, int soundNumber) {
+    //widget or expanded
+    return Expanded(
+      child: Container(
+        color: color,
+        // ignore: deprecated_member_use
+        child: FlatButton(
+          onPressed: () {
+            playSound(soundNumber);
+          },
+          child: null,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: Container(
-                  color: Colors.blue,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note1.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.red,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note2.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.green,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note3.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.purple,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note4.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.yellow,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note5.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.orange,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note6.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.teal,
-                  // ignore: deprecated_member_use
-                  child: FlatButton(
-                    onPressed: () {
-                      player.play('note7.wav');
-                    },
-                    child: Text(
-                      'Click Me!',
-                    ),
-                  ),
-                ),
-              ),
+              createButton(Colors.red, 1),
+              createButton(Colors.blue, 2),
+              createButton(Colors.purple, 3),
+              createButton(Colors.yellow, 4),
+              createButton(Colors.green, 5),
+              createButton(Colors.orange, 6),
+              createButton(Colors.pink, 7),
             ],
           ),
         ),
